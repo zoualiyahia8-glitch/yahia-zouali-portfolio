@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Yahia Zouali — identité visuelle, développement web, contenu digital et IA créative."
+    />
+    <meta name="theme-color" content="#0d0c18" />
+    <title>Yahia Zouali — Designer & développeur</title>
+    <style>
+      :root {
+        --ink: #121126;
+        --ink-soft: #68677b;
+        --paper: #f7f6fb;
+        --line: #dfddeb;
+        --violet: #724cff;
+        --blue: #07a6e6;
+        --pink: #ef2e83;
+        --orange: #ff9b18;
+        --aqua: #19b7c4;
+        --radius: 22px;
+        --shadow: 0 18px 45px rgba(22, 16, 55, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      :focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+      .shell { width: min(1180px, calc(100% - 48px)); margin: auto; }
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 10px;
+        color: #676278; font-size: .74rem; font-weight: 800;
+        letter-spacing: .14em; text-transform: uppercase;
+      }
+      .eyebrow::before { content: ""; width: 30px; height: 4px; border-radius: 99px; background: linear-gradient(90deg, var(--blue), var(--violet), var(--pink), var(--orange)); }
+      .section-head { max-width: 680px; margin-bottom: 42px; }
+      .section-head h2, .approach h2, .contact-copy h2 { margin: 13px 0 14px; font-size: clamp(2.25rem, 5vw, 4.25rem); line-height: .96; letter-spacing: -.06em; }
+      .section-head p { max-width: 610px; margin: 0; color: var(--ink-soft); font-size: 1.06rem; }
+
+      .top {
+        position: absolute; z-index: 3; inset: 0 0 auto;
+        padding: 26px 0;
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+      .mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, var(--blue), var(--violet) 48%, var(--pink), var(--orange)); box-shadow: 0 8px 20px rgba(114, 76, 255, .35); color: white; font-size: .89rem; font-weight: 900; letter-spacing: -.08em; }
+      .nav-links { display: flex; align-items: center; gap: 27px; color: #d5d3e2; font-size: .88rem; font-weight: 700; }
+      .nav-links a { transition: color .2s ease; }
+      .nav-links a:hover { color: #fff; }
+      .nav-cta { padding: 10px 15px; border: 1px solid rgba(255,255,255,.36); border-radius: 999px; color: white; }
+      .nav-cta:hover { background: white; color: var(--ink); }
+
+      .hero { position: relative; overflow: hidden; min-height: 820px; padding: 156px 0 80px; color: white; background: #0d0c18; }
+      .hero::before { content: ""; position: absolute; width: 560px; height: 560px; top: -290px; right: -60px; border-radius: 50%; background: radial-gradient(circle at 42% 45%, #ffb51c, #ef2e83 30%, #7046ff 58%, transparent 70%); filter: blur(10px); opacity: .94; }
+      .hero::after { content: ""; position: absolute; width: 640px; height: 640px; left: -390px; bottom: -450px; border-radius: 50%; border: 2px solid rgba(18,180,211,.26); box-shadow: 0 0 0 55px rgba(18,180,211,.045), 0 0 0 120px rgba(114,76,255,.035); }
+      .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .75fr; gap: clamp(32px, 8vw, 104px); align-items: end; }
+      .hero .eyebrow { color: #c1bdcf; }
+      .hero h1 { max-width: 690px; margin: 18px 0 25px; font-size: clamp(4rem, 10vw, 8.2rem); line-height: .79; letter-spacing: -.085em; }
+      .hero-name-lockup { display: flex; align-items: flex-end; gap: clamp(16px, 2.8vw, 34px); }
+      .hero-name-lockup h1 { margin: 14px 0 0; }
+      .hero-portrait { position: relative; z-index: 0; flex: 0 0 clamp(126px, 16vw, 230px); margin: 0; }
+      .hero-portrait::before { content: ""; position: absolute; z-index: -1; width: 88%; height: 45%; top: 11%; left: 6%; border-radius: 48% 52% 51% 49%; background: linear-gradient(145deg, rgba(18,180,211,.82), rgba(112,70,255,.86) 58%, rgba(239,46,131,.78)); filter: blur(12px); opacity: .74; transform: rotate(-8deg); }
+      .hero-portrait img { display: block; width: 100%; height: clamp(210px, 26vw, 335px); object-fit: contain; object-position: center bottom; filter: drop-shadow(0 18px 17px rgba(0,0,0,.3)); }
+      .gradient-word { display: block; background: linear-gradient(102deg, var(--blue) 0%, #447bf5 31%, #9c47ff 63%, var(--pink) 94%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .hero-lede { max-width: 620px; margin: 0; color: #e1dfeb; font-size: clamp(1.08rem, 2.1vw, 1.42rem); line-height: 1.5; }
+      .hero-lede b { color: #fff; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 19px; border: 1px solid transparent; border-radius: 999px; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+      .button:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.2); }
+      .button-primary { background: #fff; color: var(--ink); }
+      .button-secondary { border-color: rgba(255,255,255,.34); color: #fff; }
+      .button-secondary:hover { background: rgba(255,255,255,.1); }
+      .skill-ribbon { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 62px; }
+      .skill-ribbon span { padding: 8px 11px; border: 1px solid rgba(255,255,255,.16); border-radius: 99px; color: #b6b2c8; font-size: .78rem; font-weight: 700; }
+      .hero-visual { position: relative; min-height: 500px; }
+      .panel { position: absolute; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+      .visual-main { width: 74%; top: 22px; right: 0; transform: rotate(5deg); background: #dad5f2; }
+      .visual-main img { display: block; width: 100%; aspect-ratio: .81; object-fit: cover; object-position: 45% center; }
+      .visual-main figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 13px 15px; color: var(--ink); background: #faf9ff; font-size: .78rem; font-weight: 800; }
+      .visual-card { left: 0; bottom: 46px; width: 61%; padding: 21px; transform: rotate(-6deg); color: #fff; background: rgba(27,25,47,.94); backdrop-filter: blur(12px); }
+      .visual-card .mini-label { color: #bab5ca; font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+      .visual-card strong { display: block; margin: 12px 0 13px; font-size: 1.42rem; line-height: 1.05; }
+      .visual-card div:last-child { display: flex; align-items: center; gap: 9px; color: #d3cfde; font-size: .8rem; }
+      .pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 5px rgba(25,183,196,.14); }
+      .hero-stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; width: min(650px, 100%); margin-top: 64px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.16); }
+      .hero-stats strong { display: block; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1; letter-spacing: -.06em; }
+      .hero-stats span { display: block; margin-top: 7px; color: #b5b0c4; font-size: .78rem; font-weight: 700; }
+
+      .intro { padding: 130px 0; }
+      .intro-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 8vw, 112px); }
+      .intro-title { position: sticky; top: 24px; align-self: start; }
+      .intro-title h2 { margin: 14px 0 0; font-size: clamp(2.4rem, 5.2vw, 4.7rem); line-height: .94; letter-spacing: -.07em; }
+      .intro-body { font-size: clamp(1.1rem, 1.8vw, 1.38rem); color: #343248; }
+      .intro-body p { margin: 0 0 22px; }
+      .intro-body p:first-child { color: var(--ink); font-weight: 560; }
+      .mini-credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 38px; border: 1px solid var(--line); border-radius: 17px; overflow: hidden; background: var(--line); }
+      .credential { padding: 20px; background: #fff; }
+      .credential b { display: block; margin-bottom: 5px; font-size: .82rem; }
+      .credential span { color: var(--ink-soft); font-size: .83rem; }
+
+      .work { padding: 112px 0 130px; background: #eeecf4; }
+      .project-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: -11px 0 54px; }
+      .project-index a { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; min-height: 76px; padding: 15px 16px; border: 1px solid #d8d5e2; border-radius: 14px; background: rgba(255,255,255,.52); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+      .project-index a:hover { transform: translateY(-3px); border-color: #b6aed6; background: #fff; }
+      .project-index b { font-size: .9rem; letter-spacing: -.015em; }
+      .project-index small { color: var(--ink-soft); font-size: .72rem; font-weight: 800; white-space: nowrap; }
+      .index-no { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 9px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); font-size: .7rem; font-weight: 900; }
+      .project-index a:nth-child(2) .index-no { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+      .project-index a:nth-child(3) .index-no { background: linear-gradient(135deg, var(--aqua), var(--blue)); }
+      .project-library { display: grid; gap: 58px; }
+      .project-category { padding-top: 31px; border-top: 1px solid #d8d5e2; }
+      .project-category:first-child { padding-top: 0; border-top: 0; }
+      .category-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 24px; }
+      .category-head h3 { max-width: 700px; margin: 9px 0 8px; font-size: clamp(1.75rem, 3.6vw, 2.85rem); line-height: .98; letter-spacing: -.06em; }
+      .category-head p { max-width: 590px; margin: 0; color: var(--ink-soft); }
+      .category-count { flex: 0 0 auto; color: var(--violet); font-size: .86rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+      .organized-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .project-card { position: relative; min-height: 335px; border-radius: 18px; overflow: hidden; background: #dcd8e8; box-shadow: 0 2px 0 rgba(18,17,38,.04); transition: transform .25s ease, box-shadow .25s ease; }
+      .project-card:hover { transform: translateY(-6px); box-shadow: 0 17px 32px rgba(22,16,55,.14); }
+      .project-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+      .project-card:hover img { transform: scale(1.05); }
+      .project-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,8,22,.02) 36%, rgba(9,8,22,.86) 100%); }
+      .project-meta { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; padding: 19px; color: #fff; }
+      .project-meta p { margin: 0 0 7px; color: #e0dde7; font-size: .67rem; font-weight: 850; letter-spacing: .075em; text-transform: uppercase; }
+      .project-meta h3 { margin: 0; font-size: 1.28rem; line-height: 1.02; letter-spacing: -.045em; }
+      .project-meta span { display: inline-block; margin-top: 9px; padding: 5px 8px; border: 1px solid rgba(255,255,255,.34); border-radius: 999px; font-size: .68rem; font-weight: 800; }
+      .project-card.jsk img { object-position: center 18%; }
+      .project-card.logistique-app img { object-position: left top; }
+
+      .visual-library { padding: 124px 0; background: #fff; }
+      .library-top { display: flex; align-items: end; justify-content: space-between; gap: 34px; margin-bottom: 28px; }
+      .library-top h2 { max-width: 720px; margin: 14px 0 0; font-size: clamp(2.35rem, 5vw, 4.25rem); line-height: .94; letter-spacing: -.065em; }
+      .library-kicker { max-width: 315px; color: var(--ink-soft); font-size: .93rem; }
+      .library-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 25px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .library-tools p { margin: 0; color: #5a5669; font-size: .88rem; font-weight: 700; }
+      .library-tools strong { color: var(--ink); }
+      .library-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+      .library-actions button { min-height: 37px; padding: 0 12px; border: 1px solid #d6d2e0; border-radius: 999px; color: #4d495c; background: #fff; cursor: pointer; font-size: .76rem; font-weight: 850; }
+      .library-actions button:hover { color: white; border-color: var(--ink); background: var(--ink); }
+      .project-jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 21px 0 42px; }
+      .project-jump a { padding: 8px 10px; border-radius: 9px; color: #514c60; background: #f2f0f6; font-size: .76rem; font-weight: 780; transition: background .2s ease, color .2s ease; }
+      .project-jump a:hover { color: white; background: var(--violet); }
+      .folder-group { margin-top: 46px; }
+      .folder-group:first-child { margin-top: 0; }
+      .folder-group-title { display: flex; align-items: center; gap: 12px; margin: 0 0 13px; color: #5c576a; font-size: .75rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+      .folder-group-title::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+      .folder { overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fbfaff; }
+      .folder + .folder { margin-top: 11px; }
+      .folder[open] { box-shadow: 0 15px 36px rgba(26, 18, 58, .07); }
+      .folder-summary { display: grid; grid-template-columns: 128px 1fr auto; gap: 18px; align-items: center; min-height: 117px; padding: 10px 16px 10px 10px; cursor: pointer; list-style: none; }
+      .folder-summary::-webkit-details-marker { display: none; }
+      .folder-summary:focus-visible { outline: 3px solid var(--orange); outline-offset: -4px; }
+      .folder-cover { align-self: stretch; overflow: hidden; border-radius: 11px; background: #ded9e8; }
+      .folder-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .folder-summary-content small { display: block; margin-bottom: 5px; color: var(--violet); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+      .folder-summary-content h3 { margin: 0 0 5px; font-size: clamp(1.2rem, 2.2vw, 1.65rem); line-height: 1; letter-spacing: -.05em; }
+      .folder-summary-content p { margin: 0; color: var(--ink-soft); font-size: .86rem; }
+      .folder-count { display: inline-flex; align-items: center; gap: 9px; color: #4e485d; font-size: .78rem; font-weight: 900; white-space: nowrap; }
+      .folder-count::after { content: "+"; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: white; background: var(--ink); font-size: 1.22rem; font-weight: 500; transition: transform .2s ease; }
+      .folder[open] .folder-count::after { transform: rotate(45deg); }
+      .visuals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px; padding: 0 10px 10px; }
+      .gallery-card { position: relative; display: block; aspect-ratio: 1 / .78; overflow: hidden; padding: 0; border: 0; border-radius: 9px; background: #e5e1ec; cursor: zoom-in; }
+      .gallery-card::after { content: "Agrandir ↗"; position: absolute; right: 8px; bottom: 8px; padding: 4px 6px; border-radius: 6px; color: white; background: rgba(17,16,35,.78); font-size: .63rem; font-weight: 800; opacity: 0; transform: translateY(5px); transition: opacity .2s ease, transform .2s ease; }
+      .gallery-card:hover::after, .gallery-card:focus-visible::after { opacity: 1; transform: translateY(0); }
+      .gallery-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+      .gallery-card:hover img { transform: scale(1.045); }
+      .lightbox { max-width: min(1100px, calc(100vw - 30px)); max-height: calc(100vh - 30px); padding: 0; border: 0; border-radius: 17px; background: #0d0c18; box-shadow: 0 30px 90px rgba(0,0,0,.5); }
+      .lightbox::backdrop { background: rgba(11,10,22,.86); backdrop-filter: blur(4px); }
+      .lightbox figure { margin: 0; }
+      .lightbox img { display: block; max-width: min(1100px, calc(100vw - 30px)); max-height: calc(100vh - 115px); margin: auto; object-fit: contain; }
+      .lightbox figcaption { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 57px; padding: 10px 16px; color: white; font-size: .84rem; font-weight: 760; }
+      .lightbox button { display: grid; place-items: center; width: 31px; height: 31px; padding: 0; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: white; background: transparent; cursor: pointer; font-size: 1.1rem; }
+
+      .capabilities { padding: 126px 0; background: #fff; }
+      .services { border-top: 1px solid var(--line); }
+      .service { display: grid; grid-template-columns: 70px 1fr auto; gap: 26px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); }
+      .service-index { font-size: .84rem; font-weight: 900; }
+      .service h3 { margin: 0 0 5px; font-size: clamp(1.28rem, 2.5vw, 2rem); letter-spacing: -.045em; }
+      .service p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
+      .service-tags { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 7px; max-width: 300px; }
+      .service-tags span { padding: 6px 8px; border-radius: 7px; background: #f0eff5; color: #555163; font-size: .74rem; font-weight: 750; }
+      .violet .service-index { color: var(--violet); } .pink .service-index { color: var(--pink); } .aqua .service-index { color: var(--aqua); } .orange .service-index { color: var(--orange); }
+
+      .approach { padding: 112px 0; color: #fff; background: var(--ink); }
+      .approach-grid { display: grid; grid-template-columns: 1fr .9fr; gap: 70px; align-items: start; }
+      .approach h2 { max-width: 550px; }
+      .approach p { max-width: 550px; color: #c6c2d2; font-size: 1.08rem; }
+      .steps { display: grid; gap: 14px; }
+      .step { display: grid; grid-template-columns: 45px 1fr; gap: 15px; padding: 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: rgba(255,255,255,.04); }
+      .step strong { display: block; margin-bottom: 5px; }
+      .step span { color: #beb9cb; font-size: .89rem; }
+      .step-no { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--blue), var(--violet)); font-size: .79rem; font-weight: 900; }
+
+      .contact { position: relative; overflow: hidden; padding: 132px 0 32px; background: #f9f8fc; }
+      .contact::before { content: ""; position: absolute; width: 640px; height: 640px; right: -390px; bottom: -390px; border-radius: 50%; background: conic-gradient(from 170deg, var(--blue), var(--violet), var(--pink), var(--orange), var(--blue)); opacity: .82; }
+      .contact-grid { position: relative; display: grid; grid-template-columns: 1fr .82fr; gap: 60px; align-items: end; }
+      .contact-copy h2 { max-width: 660px; }
+      .contact-copy p { max-width: 580px; color: var(--ink-soft); font-size: 1.08rem; }
+      .contact-card { padding: 26px; border-radius: var(--radius); color: #fff; background: var(--ink); box-shadow: var(--shadow); }
+      .contact-card p { margin: 0 0 22px; color: #c6c2d0; }
+      .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 0; border-top: 1px solid rgba(255,255,255,.15); font-weight: 800; }
+      .contact-link span:last-child { color: var(--orange); font-size: 1.25rem; }
+      footer { position: relative; display: flex; justify-content: space-between; gap: 16px; margin-top: 96px; padding: 24px 0; border-top: 1px solid var(--line); color: #777285; font-size: .79rem; }
+
+      @media (max-width: 850px) {
+        .shell { width: min(100% - 34px, 680px); }
+        .nav-links a:not(.nav-cta) { display: none; }
+        .hero { min-height: auto; padding-top: 132px; }
+        .hero-grid, .intro-grid, .approach-grid, .contact-grid { grid-template-columns: 1fr; }
+        .hero-visual { min-height: 400px; max-width: 520px; width: 85%; justify-self: end; }
+        .intro-title { position: static; }
+        .project-index { grid-template-columns: 1fr; margin-bottom: 45px; }
+        .organized-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .library-top { display: block; }
+        .library-kicker { max-width: 550px; margin: 16px 0 0; }
+        .service { grid-template-columns: 42px 1fr; gap: 15px; }
+        .service-tags { grid-column: 2; justify-content: flex-start; max-width: none; }
+      }
+      @media (max-width: 520px) {
+        .top { padding-top: 17px; }
+        .hero { padding-bottom: 50px; }
+        .hero h1 { font-size: clamp(3.55rem, 20vw, 5.5rem); }
+        .hero-visual { width: 100%; min-height: 345px; }
+        .hero-name-lockup { gap: 12px; }
+        .hero-portrait { flex-basis: 92px; }
+        .hero-portrait img { height: 145px; }
+        .visual-main { width: 77%; }
+        .visual-card { width: 65%; bottom: 10px; padding: 16px; }
+        .hero-stats { gap: 12px; }
+        .hero-stats span { font-size: .68rem; }
+        .intro, .work, .visual-library, .capabilities, .approach, .contact { padding-top: 82px; padding-bottom: 82px; }
+        .mini-credentials { grid-template-columns: 1fr; }
+        .project-library { gap: 46px; }
+        .category-head { display: block; }
+        .category-count { display: block; margin-top: 13px; }
+        .organized-grid { gap: 11px; }
+        .project-card { min-height: 260px; }
+        .project-meta { padding: 14px; }
+        .project-meta h3 { font-size: 1.05rem; }
+        .library-tools { align-items: start; }
+        .folder-summary { grid-template-columns: 86px 1fr; min-height: 96px; gap: 12px; padding: 7px 10px 7px 7px; }
+        .folder-count { grid-column: 2; justify-self: start; font-size: .7rem; }
+        .folder-count::after { width: 23px; height: 23px; font-size: 1rem; }
+        .visuals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 0 7px 7px; }
+        .gallery-card::after { display: none; }
+        footer { margin-top: 64px; flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="shell nav" aria-label="Navigation principale">
+        <a class="mark" href="#accueil" aria-label="Retour à l'accueil">YZ</a>
+        <nav class="nav-links">
+          <a href="#projets">Projets</a>
+          <a href="#bibliotheque">Bibliothèque</a>
+          <a href="#expertises">Expertises</a>
+          <a href="#apropos">À propos</a>
+          <a class="nav-cta" href="#contact">Parlons-en ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil">
+        <div class="shell hero-grid">
+          <div>
+            <div class="hero-name-lockup">
+              <figure class="hero-portrait">
+                <img src="assets/yahia-zouali-hero-cutout.png" alt="Portrait de Yahia Zouali" />
+              </figure>
+              <div>
+                <div class="eyebrow">Designer & développeur · Algérie</div>
+                <h1><span>Yahia</span><span class="gradient-word">Zouali</span></h1>
+              </div>
+            </div>
+            <p class="hero-lede">Je construis des <b>identités qui marquent</b>, des contenus qui attirent et des expériences numériques qui fonctionnent.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#bibliotheque">Explorer tous les visuels</a>
+              <a class="button button-secondary" href="assets/Yahia-Zouali-Portfolio-FR.pdf" download>Télécharger le portfolio PDF</a>
+            </div>
+            <div class="skill-ribbon" aria-label="Domaines de spécialisation">
+              <span>Identité visuelle</span><span>Développement web</span><span>Contenu digital</span><span>IA créative</span>
+            </div>
+            <div class="hero-stats">
+              <div><strong>18</strong><span>projets au catalogue</span></div>
+              <div><strong>290</strong><span>visuels organisés</span></div>
+              <div><strong>6</strong><span>mois chez Digital Smile</span></div>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="Aperçu d'un projet d'interface JSK">
+            <figure class="panel visual-main">
+              <img src="assets/jsk-planche.jpg" alt="Planches d'interface pour une application JSK" />
+              <figcaption><span>JSK — produit digital</span><span>01 / 05</span></figcaption>
+            </figure>
+            <div class="panel visual-card">
+              <div class="mini-label">Vision</div>
+              <strong>Un profil, cinq terrains de jeu.</strong>
+              <div><span class="pulse" aria-hidden="true"></span> Disponible pour collaborer</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" id="apropos">
+        <div class="shell intro-grid">
+          <div class="intro-title">
+            <div class="eyebrow">Le profil</div>
+            <h2>Créatif dans la forme. Rigoureux dans le fond.</h2>
+          </div>
+          <div class="intro-body">
+            <p>Je relie direction artistique, technologie et analyse pour transformer une intention en expérience claire et mémorable.</p>
+            <p>Diplômé Technicien Supérieur en développement web et multimédia à l’Institut Khalil Ziat de Blida, j’ai consolidé ma pratique chez Digital Smile avant de développer des projets mêlant branding, contenu, interfaces et IA générative.</p>
+            <p>Mon point de vue : une bonne idée doit autant se ressentir visuellement qu’elle doit fonctionner au quotidien.</p>
+            <div class="mini-credentials">
+              <div class="credential"><b>Langage visuel</b><span>Logos, chartes, packagings, campagnes et concepts.</span></div>
+              <div class="credential"><b>Langage produit</b><span>Interfaces, front-end, back-end et applications desktop.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work" id="projets">
+        <div class="shell">
+          <div class="section-head">
+            <div class="eyebrow">Tous les projets</div>
+            <h2>18 projets, classés pour être compris d’un seul regard.</h2>
+            <p>Chaque réalisation apparaît une seule fois, dans une collection qui précise immédiatement son contexte et sa nature.</p>
+          </div>
+          <nav class="project-index" aria-label="Accès rapide aux catégories de projets">
+            <a href="#produits-numeriques"><span class="index-no">01</span><b>Produits numériques</b><small>3 projets →</small></a>
+            <a href="#identites-branding"><span class="index-no">02</span><b>Identités & campagnes</b><small>8 projets →</small></a>
+            <a href="#collaborations"><span class="index-no">03</span><b>Collaborations Digital Smile</b><small>7 projets →</small></a>
+          </nav>
+          <div class="project-library">
+            <section class="project-category" id="produits-numeriques" aria-labelledby="digital-title">
+              <div class="category-head">
+                <div><div class="eyebrow">Collection 01</div><h3 id="digital-title">Produits numériques & applications</h3><p>Des interfaces pensées pour l’usage : gestion, espace membre et réservation en ligne.</p></div>
+                <span class="category-count">3 projets</span>
+              </div>
+              <div class="organized-grid">
+                <article class="project-card jsk"><img src="assets/jsk-planche.jpg" alt="Interfaces mobiles et web d'un projet JSK" /><div class="project-meta"><p>Produit digital</p><h3>JSK — expérience membre</h3><span>Interface & développement</span></div></article>
+                <article class="project-card logistique-app"><img src="assets/logistique.png" alt="Interface de gestion Logistique Manager" /><div class="project-meta"><p>Application de gestion</p><h3>Logistique Manager</h3><span>Interface métier</span></div></article>
+                <article class="project-card"><img src="assets/chabane-tourisme.jpg" alt="Projet web Chabane Tourisme et Voyage" /><div class="project-meta"><p>Application web</p><h3>Chabane Tourisme & Voyage</h3><span>Réservation en ligne</span></div></article>
+              </div>
+            </section>
+            <section class="project-category" id="identites-branding" aria-labelledby="brands-title">
+              <div class="category-head">
+                <div><div class="eyebrow">Collection 02</div><h3 id="brands-title">Identités & campagnes indépendantes</h3><p>Des territoires de marque, packagings et créations visuelles développés pour des univers singuliers.</p></div>
+                <span class="category-count">8 projets</span>
+              </div>
+              <div class="organized-grid">
+                <article class="project-card"><img src="assets/honete.png" alt="Supports de l'identité visuelle Honête" /><div class="project-meta"><p>Identité visuelle</p><h3>Honête</h3><span>Brand system</span></div></article>
+                <article class="project-card"><img src="assets/lalla-dz.jpg" alt="Création visuelle Lalla DZ" /><div class="project-meta"><p>Création de marque</p><h3>Lalla DZ</h3><span>Identité visuelle</span></div></article>
+                <article class="project-card"><img src="assets/mon-cafe.png" alt="Planche d'identité visuelle Mon Café" /><div class="project-meta"><p>Identité visuelle</p><h3>Mon Café</h3><span>Concept de marque</span></div></article>
+                <article class="project-card"><img src="assets/zaytouna.png" alt="Planche d'identité visuelle Zaytouna" /><div class="project-meta"><p>Pack & identité</p><h3>Zaytouna</h3><span>Univers méditerranéen</span></div></article>
+                <article class="project-card"><img src="assets/morise.jpg" alt="Présentation de marque Morise" /><div class="project-meta"><p>Identité visuelle</p><h3>Morise</h3><span>Branding</span></div></article>
+                <article class="project-card"><img src="assets/yhs.jpg" alt="Identité architecturale YHS" /><div class="project-meta"><p>Architecture & immobilier</p><h3>YHS</h3><span>Identité visuelle</span></div></article>
+                <article class="project-card"><img src="assets/pies-motor.jpg" alt="Création visuelle Pies Motor" /><div class="project-meta"><p>Contenu de marque</p><h3>Pies Motor</h3><span>Visuels promotionnels</span></div></article>
+                <article class="project-card"><img src="assets/logistique-brand.jpg" alt="Identité d'un projet logistique" /><div class="project-meta"><p>Identité visuelle</p><h3>Logistique</h3><span>Direction artistique</span></div></article>
+              </div>
+            </section>
+            <section class="project-category" id="collaborations" aria-labelledby="digital-smile-title">
+              <div class="category-head">
+                <div><div class="eyebrow">Collection 03</div><h3 id="digital-smile-title">Collaborations avec Digital Smile</h3><p>Des projets de contenu et de direction artistique réalisés dans le cadre de collaborations d’agence.</p></div>
+                <span class="category-count">7 projets</span>
+              </div>
+              <div class="organized-grid">
+                <article class="project-card"><img src="assets/arizona.png" alt="Création visuelle de campagne Arizona" /><div class="project-meta"><p>Contenu de marque</p><h3>Arizona</h3><span>Campagne visuelle</span></div></article>
+                <article class="project-card"><img src="assets/cozy-the.jpg" alt="Création visuelle Cozy Thé" /><div class="project-meta"><p>Collaboration</p><h3>Cozy Thé</h3><span>Contenu digital</span></div></article>
+                <article class="project-card"><img src="assets/gaer-crafte.jpg" alt="Création visuelle Gaer Crafte" /><div class="project-meta"><p>Collaboration</p><h3>Gaer Crafte</h3><span>Contenu de marque</span></div></article>
+                <article class="project-card"><img src="assets/prodial.jpg" alt="Création visuelle Prodial" /><div class="project-meta"><p>Collaboration</p><h3>Prodial</h3><span>Contenu de marque</span></div></article>
+                <article class="project-card"><img src="assets/digital-copie.jpg" alt="Création visuelle Digital Copie" /><div class="project-meta"><p>Collaboration</p><h3>Digital Copie</h3><span>Direction artistique</span></div></article>
+                <article class="project-card"><img src="assets/ghaya.jpg" alt="Création visuelle Ghaya" /><div class="project-meta"><p>Collaboration</p><h3>Ghaya</h3><span>Contenu digital</span></div></article>
+                <article class="project-card"><img src="assets/kenza-service.jpg" alt="Création visuelle Kenza Service" /><div class="project-meta"><p>Collaboration</p><h3>Kenza Service</h3><span>Campagne digitale</span></div></article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="visual-library" id="bibliotheque" aria-labelledby="library-title">
+        <div class="shell">
+          <div class="library-top">
+            <div>
+              <div class="eyebrow">Bibliothèque visuelle</div>
+              <h2 id="library-title">Chaque dossier, tous ses visuels.</h2>
+            </div>
+            <p class="library-kicker">Les visuels sont regroupés selon leur dossier d’origine. Ouvrez une galerie pour parcourir l’intégralité du projet, sans mélange ni répétition.</p>
+          </div>
+          <div class="library-tools">
+            <p><strong>290 visuels</strong> · 17 dossiers · 3 collections</p>
+            <div class="library-actions">
+              <button type="button" data-library-action="open">Ouvrir toutes les galeries</button>
+              <button type="button" data-library-action="close">Refermer les galeries</button>
+            </div>
+          </div>
+          <nav class="project-jump" id="project-jump" aria-label="Accès rapide aux dossiers visuels"></nav>
+          <div id="library-galleries"></div>
+        </div>
+      </section>
+
+      <section class="capabilities" id="expertises">
+        <div class="shell">
+          <div class="section-head">
+            <div class="eyebrow">Savoir-faire</div>
+            <h2>De l'idée jusqu'au dernier détail.</h2>
+            <p>J’interviens là où le message, l’image et l’usage doivent rester parfaitement cohérents.</p>
+          </div>
+          <div class="services">
+            <article class="service pink"><span class="service-index">01</span><div><h3>Design, branding & identité visuelle</h3><p>Créer un territoire reconnaissable, cohérent et prêt à vivre sur tous ses supports.</p></div><div class="service-tags"><span>Logo</span><span>Charte graphique</span><span>Packaging</span></div></article>
+            <article class="service violet"><span class="service-index">02</span><div><h3>Développement web & logiciel</h3><p>Donner une structure solide aux expériences numériques, du front-end aux données.</p></div><div class="service-tags"><span>UI/UX</span><span>React</span><span>Node.js</span><span>Electron</span></div></article>
+            <article class="service aqua"><span class="service-index">03</span><div><h3>IA créative & production visuelle</h3><p>Explorer plus vite, enrichir une direction et intégrer l’IA au bon endroit dans le workflow.</p></div><div class="service-tags"><span>Génération d’images</span><span>Prompting</span><span>Workflows</span></div></article>
+            <article class="service"><span class="service-index" style="color:#9947e9">04</span><div><h3>Contenu digital</h3><p>Imaginer des formats qui portent une marque, une campagne ou un lancement avec justesse.</p></div><div class="service-tags"><span>Réseaux sociaux</span><span>Campagne</span><span>Supports marketing</span></div></article>
+            <article class="service orange"><span class="service-index">05</span><div><h3>Analyse & investissement</h3><p>Transformer l’information en lecture claire pour orienter une décision ou une opportunité.</p></div><div class="service-tags"><span>Recherche</span><span>Synthèse</span><span>Indicateurs</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="approach">
+        <div class="shell approach-grid">
+          <div>
+            <div class="eyebrow" style="color:#bdb8cd">Ma méthode</div>
+            <h2>Faire simple ne veut pas dire faire moins.</h2>
+            <p>Chaque collaboration avance avec un fil clair : comprendre l’essentiel, trouver l’idée juste, puis l’exécuter avec précision. Le résultat doit être beau, utile et prêt à tenir dans le temps.</p>
+          </div>
+          <div class="steps">
+            <div class="step"><div class="step-no">01</div><div><strong>Cadrer</strong><span>Clarifier le besoin, les publics et la place de votre projet.</span></div></div>
+            <div class="step"><div class="step-no">02</div><div><strong>Donner une direction</strong><span>Installer un langage visuel ou produit qui porte la bonne intention.</span></div></div>
+            <div class="step"><div class="step-no">03</div><div><strong>Fabriquer & affiner</strong><span>Prototyper, produire, tester les détails et préparer la suite.</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="shell contact-grid">
+          <div class="contact-copy">
+            <div class="eyebrow">Contact</div>
+            <h2>Un projet en tête ?<br />Construisons-le.</h2>
+            <p>Vous avez une marque à révéler, un produit à rendre plus clair ou une idée à transformer en expérience ? Écrivez-moi.</p>
+          </div>
+          <div class="contact-card">
+            <p>Disponible pour des missions créatives et numériques.</p>
+            <a class="contact-link" href="mailto:zoualiyahia8@gmail.com"><span>zoualiyahia8@gmail.com</span><span aria-hidden="true">↗</span></a>
+            <a class="contact-link" href="tel:+213775080061"><span>0775 080 061</span><span aria-hidden="true">↗</span></a>
+            <a class="contact-link" href="assets/Yahia-Zouali-Portfolio-FR.pdf" download><span>Portfolio PDF — Français</span><span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <footer class="shell"><span>© <span id="year"></span> Yahia Zouali</span><span>Designer, développeur & créatif IA — Algérie</span></footer>
+      </section>
+    </main>
+    <dialog class="lightbox" id="library-lightbox" aria-label="Aperçu du visuel">
+      <figure>
+        <img id="lightbox-image" alt="" />
+        <figcaption><span id="lightbox-caption"></span><button type="button" id="lightbox-close" aria-label="Fermer l’aperçu">×</button></figcaption>
+      </figure>
+    </dialog>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const visualLibrary = [
+        {
+          collection: "Applications & interfaces",
+          projects: [
+            { slug: "logistique-manager", name: "Logistique Manager", label: "Application de gestion", description: "Toutes les interfaces du dossier Logistique Manager.", count: 16 },
+            { slug: "jsk", name: "JSK", label: "Produit digital", description: "Planches, interfaces et déclinaisons du projet JSK.", count: 43 }
+          ]
+        },
+        {
+          collection: "Identités, marques & contenus indépendants",
+          projects: [
+            { slug: "honete", name: "Honête", label: "Identité visuelle", description: "Éléments de marque et supports du dossier Honête.", count: 6 },
+            { slug: "lalla-dz", name: "Lalla DZ", label: "Création de marque", description: "Visuels de la collection Lalla DZ.", count: 4 },
+            { slug: "mon-cafe", name: "Mon Café", label: "Identité visuelle", description: "Concept de marque et planches Mon Café.", count: 2 },
+            { slug: "zaytouna", name: "Zaytouna", label: "Pack & identité", description: "L’ensemble des visuels du dossier Zaytouna.", count: 23 },
+            { slug: "morise", name: "Morise", label: "Identité visuelle", description: "Présentation et déclinaisons de la marque Morise.", count: 2 },
+            { slug: "yhs", name: "YHS", label: "Architecture & immobilier", description: "Supports de l’identité architecturale YHS.", count: 3 },
+            { slug: "pies-motor", name: "Pies Motor", label: "Contenu de marque", description: "Visuels promotionnels du projet Pies Motor.", count: 3 },
+            { slug: "logistique-brand", name: "Logistique", label: "Direction artistique", description: "Identité et visuels de marque pour la logistique.", count: 9 }
+          ]
+        },
+        {
+          collection: "Collaborations Digital Smile",
+          projects: [
+            { slug: "cozy-the", name: "Cozy Thé", label: "Contenu digital", description: "Toutes les créations du dossier Cozy Thé.", count: 20 },
+            { slug: "gaer-crafte", name: "Gaer Crafte", label: "Contenu de marque", description: "Visuels de la collaboration Gaer Crafte.", count: 17 },
+            { slug: "prodial", name: "Prodial", label: "Contenu de marque", description: "Visuels de la collaboration Prodial.", count: 15 },
+            { slug: "arizona", name: "Arizona", label: "Campagne visuelle", description: "L’intégralité des créations de campagne Arizona.", count: 76 },
+            { slug: "digital-copie", name: "Digital Copie", label: "Direction artistique", description: "Visuels du dossier Digital Copie.", count: 10 },
+            { slug: "ghaya", name: "Ghaya", label: "Contenu digital", description: "Visuels de la collaboration Ghaya.", count: 29 },
+            { slug: "kenza-service", name: "Kenza Service", label: "Campagne digitale", description: "Visuels du dossier Kenza Service.", count: 12 }
+          ]
+        }
+      ];
+
+      const galleries = document.getElementById("library-galleries");
+      const jumpLinks = document.getElementById("project-jump");
+      const fileName = (index) => String(index).padStart(3, "0") + ".jpg";
+      const imagePath = (project, index) => "assets/library/" + project.slug + "/" + fileName(index);
+
+      visualLibrary.forEach((group, groupIndex) => {
+        const groupElement = document.createElement("section");
+        groupElement.className = "folder-group";
+        groupElement.innerHTML = `<h3 class="folder-group-title">${group.collection}</h3>`;
+
+        group.projects.forEach((project, projectIndex) => {
+          const folder = document.createElement("details");
+          folder.className = "folder";
+          folder.id = "dossier-" + project.slug;
+          if (groupIndex === 0 && projectIndex === 0) folder.open = true;
+
+          const thumbnails = Array.from({ length: project.count }, (_, offset) => {
+            const visualNumber = offset + 1;
+            const source = imagePath(project, visualNumber);
+            const label = `${project.name} — visuel ${visualNumber} sur ${project.count}`;
+            return `<button class="gallery-card" type="button" data-lightbox data-src="${source}" data-label="${label}" aria-label="Agrandir ${label}"><img src="${source}" alt="${label}" loading="lazy" /></button>`;
+          }).join("");
+
+          folder.innerHTML = `
+            <summary class="folder-summary">
+              <span class="folder-cover"><img src="${imagePath(project, 1)}" alt="Aperçu du dossier ${project.name}" loading="lazy" /></span>
+              <span class="folder-summary-content"><small>${project.label}</small><h3>${project.name}</h3><p>${project.description}</p></span>
+              <span class="folder-count">${project.count} visuels</span>
+            </summary>
+            <div class="visuals-grid">${thumbnails}</div>`;
+          groupElement.append(folder);
+
+          const link = document.createElement("a");
+          link.href = "#dossier-" + project.slug;
+          link.textContent = project.name + " · " + project.count;
+          link.addEventListener("click", () => { folder.open = true; });
+          jumpLinks.append(link);
+        });
+
+        galleries.append(groupElement);
+      });
+
+      document.querySelectorAll("[data-library-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const shouldOpen = button.dataset.libraryAction === "open";
+          document.querySelectorAll(".folder").forEach((folder) => { folder.open = shouldOpen; });
+        });
+      });
+
+      const lightbox = document.getElementById("library-lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      document.addEventListener("click", (event) => {
+        const card = event.target.closest("[data-lightbox]");
+        if (!card) return;
+        lightboxImage.src = card.dataset.src;
+        lightboxImage.alt = card.dataset.label;
+        lightboxCaption.textContent = card.dataset.label;
+        lightbox.showModal();
+      });
+      document.getElementById("lightbox-close").addEventListener("click", () => lightbox.close());
+      lightbox.addEventListener("click", (event) => { if (event.target === lightbox) lightbox.close(); });
+    </script>
+  </body>
+</html>
